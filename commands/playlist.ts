@@ -2,6 +2,7 @@ import { DiscordGatewayAdapterCreator, joinVoiceChannel } from "@discordjs/voice
 import {
   ChatInputCommandInteraction,
   EmbedBuilder,
+  PermissionFlagsBits,
   PermissionsBitField,
   SlashCommandBuilder,
   TextChannel
@@ -16,7 +17,7 @@ export default {
   data: new SlashCommandBuilder()
     .setName("playlist")
     .setDescription(i18n.__("playlist.description"))
-    .addStringOption((option) => option.setName("playlist").setDescription("Playlist name or link").setRequired(true)),
+    .addStringOption((option) => option.setName("playlist").setDescription("Playlist name or link").setRequired(true)).setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   cooldown: 5,
   permissions: [PermissionsBitField.Flags.Connect, PermissionsBitField.Flags.Speak],
   async execute(interaction: ChatInputCommandInteraction, queryOptionName = "playlist") {

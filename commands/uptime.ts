@@ -1,9 +1,9 @@
-import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
+import { ChatInputCommandInteraction, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
 import { bot } from "../index";
 import { i18n } from "../utils/i18n";
 
 export default {
-  data: new SlashCommandBuilder().setName("uptime").setDescription(i18n.__("uptime.description")),
+  data: new SlashCommandBuilder().setName("uptime").setDescription(i18n.__("uptime.description")).setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   execute(interaction: ChatInputCommandInteraction) {
     let seconds = Math.floor(bot.client.uptime! / 1000);
     let minutes = Math.floor(seconds / 60);

@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
+import { ChatInputCommandInteraction, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
 import { bot } from "../index";
 import { i18n } from "../utils/i18n";
 import { canModifyQueue } from "../utils/queue";
@@ -9,7 +9,7 @@ export default {
     .setDescription(i18n.__("skipto.description"))
     .addIntegerOption((option) =>
       option.setName("number").setDescription(i18n.__("skipto.args.number")).setRequired(true)
-    ),
+    ).setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   execute(interaction: ChatInputCommandInteraction) {
     const playlistSlotArg = interaction.options.getInteger("number");
     const guildMemer = interaction.guild!.members.cache.get(interaction.user.id);

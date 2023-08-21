@@ -4,12 +4,13 @@ import {
   ButtonStyle,
   ChatInputCommandInteraction,
   EmbedBuilder,
+  PermissionFlagsBits,
   SlashCommandBuilder
 } from "discord.js";
 import { i18n } from "../utils/i18n";
 
 export default {
-  data: new SlashCommandBuilder().setName("invite").setDescription(i18n.__("invite.description")),
+  data: new SlashCommandBuilder().setName("invite").setDescription(i18n.__("invite.description")).setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   execute(interaction: ChatInputCommandInteraction) {
     const inviteEmbed = new EmbedBuilder().setTitle(i18n.__mf("Invite me to your server!"));
 
@@ -19,8 +20,7 @@ export default {
         .setLabel(i18n.__mf("Invite"))
         .setStyle(ButtonStyle.Link)
         .setURL(
-          `https://discord.com/api/oauth2/authorize?client_id=${
-            interaction.client.user!.id
+          `https://discord.com/api/oauth2/authorize?client_id=${interaction.client.user!.id
           }&permissions=8&scope=bot%20applications.commands`
         )
     );

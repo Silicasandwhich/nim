@@ -1,5 +1,5 @@
 import move from "array-move";
-import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
+import { ChatInputCommandInteraction, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
 import { bot } from "../index";
 import { i18n } from "../utils/i18n";
 import { canModifyQueue } from "../utils/queue";
@@ -13,7 +13,7 @@ export default {
     )
     .addIntegerOption((option) =>
       option.setName("moveto").setDescription(i18n.__("move.args.moveto")).setRequired(true)
-    ),
+    ).setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   execute(interaction: ChatInputCommandInteraction) {
     const movefromArg = interaction.options.getInteger("movefrom");
     const movetoArg = interaction.options.getInteger("moveto");

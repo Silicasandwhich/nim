@@ -1,11 +1,11 @@
-import { ChatInputCommandInteraction, EmbedBuilder, SlashCommandBuilder } from "discord.js";
+import { ChatInputCommandInteraction, EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
 import { i18n } from "../utils/i18n";
 // @ts-ignore
 import lyricsFinder from "lyrics-finder";
 import { bot } from "../index";
 
 export default {
-  data: new SlashCommandBuilder().setName("lyrics").setDescription(i18n.__("lyrics.description")),
+  data: new SlashCommandBuilder().setName("lyrics").setDescription(i18n.__("lyrics.description")).setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   async execute(interaction: ChatInputCommandInteraction) {
     const queue = bot.queues.get(interaction.guild!.id);
 
