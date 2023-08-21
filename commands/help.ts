@@ -1,4 +1,4 @@
-import { CommandInteraction, EmbedBuilder, SlashCommandBuilder } from "discord.js";
+import { CommandInteraction, EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
 import { i18n } from "../utils/i18n";
 import { bot } from "../index";
 
