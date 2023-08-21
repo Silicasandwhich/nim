@@ -1,5 +1,5 @@
 import { DiscordGatewayAdapterCreator, joinVoiceChannel } from "@discordjs/voice";
-import { ChatInputCommandInteraction, PermissionsBitField, SlashCommandBuilder, TextChannel } from "discord.js";
+import { ChatInputCommandInteraction, PermissionFlagsBits, PermissionsBitField, SlashCommandBuilder, TextChannel } from "discord.js";
 import { bot } from "../index";
 import { MusicQueue } from "../structs/MusicQueue";
 import { Song } from "../structs/Song";
@@ -10,7 +10,7 @@ export default {
   data: new SlashCommandBuilder()
     .setName("play")
     .setDescription(i18n.__("play.description"))
-    .addStringOption((option) => option.setName("song").setDescription("The song you want to play").setRequired(true)),
+    .addStringOption((option) => option.setName("song").setDescription("The song you want to play").setRequired(true)).setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   cooldown: 3,
   permissions: [
     PermissionsBitField.Flags.Connect,

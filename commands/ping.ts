@@ -1,8 +1,8 @@
-import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
+import { ChatInputCommandInteraction, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
 import { i18n } from "../utils/i18n";
 
 export default {
-  data: new SlashCommandBuilder().setName("ping").setDescription(i18n.__("ping.description")),
+  data: new SlashCommandBuilder().setName("ping").setDescription(i18n.__("ping.description")).setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   cooldown: 10,
   execute(interaction: ChatInputCommandInteraction) {
     interaction

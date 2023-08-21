@@ -1,10 +1,10 @@
-import { ChatInputCommandInteraction, EmbedBuilder, SlashCommandBuilder } from "discord.js";
+import { ChatInputCommandInteraction, EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
 import { splitBar } from "string-progressbar";
 import { bot } from "../index";
 import { i18n } from "../utils/i18n";
 
 export default {
-  data: new SlashCommandBuilder().setName("nowplaying").setDescription(i18n.__("nowplaying.description")),
+  data: new SlashCommandBuilder().setName("nowplaying").setDescription(i18n.__("nowplaying.description")).setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   cooldown: 10,
   execute(interaction: ChatInputCommandInteraction) {
     const queue = bot.queues.get(interaction.guild!.id);

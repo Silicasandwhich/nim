@@ -1,10 +1,10 @@
-import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
+import { ChatInputCommandInteraction, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
 import { bot } from "../index";
 import { i18n } from "../utils/i18n";
 import { canModifyQueue } from "../utils/queue";
 
 export default {
-  data: new SlashCommandBuilder().setName("pause").setDescription(i18n.__("pause.description")),
+  data: new SlashCommandBuilder().setName("pause").setDescription(i18n.__("pause.description")).setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   execute(interaction: ChatInputCommandInteraction) {
     const guildMemer = interaction.guild!.members.cache.get(interaction.user.id);
     const queue = bot.queues.get(interaction.guild!.id);

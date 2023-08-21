@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, CommandInteraction, ChatInputCommandInteraction } from "discord.js";
+import { SlashCommandBuilder, ChatInputCommandInteraction, PermissionFlagsBits } from "discord.js";
 import { bot } from "../index";
 import { Song } from "../structs/Song";
 import { i18n } from "../utils/i18n";
@@ -12,7 +12,7 @@ export default {
     .setDescription(i18n.__("remove.description"))
     .addStringOption((option) =>
       option.setName("slot").setDescription(i18n.__("remove.description")).setRequired(true)
-    ),
+    ).setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   execute(interaction: ChatInputCommandInteraction) {
     const guildMemer = interaction.guild!.members.cache.get(interaction.user.id);
     const removeArgs = interaction.options.getString("slot");

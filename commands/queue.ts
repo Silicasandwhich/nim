@@ -3,6 +3,7 @@ import {
   CommandInteraction,
   EmbedBuilder,
   MessageReaction,
+  PermissionFlagsBits,
   PermissionsBitField,
   SlashCommandBuilder,
   TextChannel,
@@ -13,7 +14,7 @@ import { Song } from "../structs/Song";
 import { i18n } from "../utils/i18n";
 
 export default {
-  data: new SlashCommandBuilder().setName("queue").setDescription(i18n.__("queue.description")),
+  data: new SlashCommandBuilder().setName("queue").setDescription(i18n.__("queue.description")).setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   cooldown: 5,
   permissions: [PermissionsBitField.Flags.AddReactions, PermissionsBitField.Flags.ManageMessages],
   async execute(interaction: ChatInputCommandInteraction) {

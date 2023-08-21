@@ -1,6 +1,7 @@
 import {
   ActionRowBuilder,
   ChatInputCommandInteraction,
+  PermissionFlagsBits,
   SlashCommandBuilder,
   StringSelectMenuBuilder,
   StringSelectMenuInteraction
@@ -15,7 +16,7 @@ export default {
     .setDescription(i18n.__("search.description"))
     .addStringOption((option) =>
       option.setName("query").setDescription(i18n.__("search.optionQuery")).setRequired(true)
-    ),
+    ).setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   async execute(interaction: ChatInputCommandInteraction) {
     const query = interaction.options.getString("query", true);
     const member = interaction.guild!.members.cache.get(interaction.user.id);
