@@ -5,4 +5,5 @@ export interface Config {
   STAY_TIME: number;
   DEFAULT_VOLUME: number;
   LOCALE: string;
+  DM_SURROGATE: string;
 }
