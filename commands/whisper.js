@@ -2,21 +2,22 @@ const { PermissionFlagsBits, SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("say")
-    .setDescription("make nim say things")
-    .addChannelOption((option) =>
-      option.setName("target").setDescription("The channel to speak in").setRequired(true)
+    .setName("whisper")
+    .setDescription("have nim say things in DMs")
+    .addUserOption((option) =>
+      option.setName("target").setDescription("The user to DM").setRequired(true)
     )
     .addStringOption((option) =>
       option.setName("message").setDescription("Message to send").setRequired(true)
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
-    .setDMPermission(false),
+    .setDMPermission(true),
   async execute(interaction) {
-    const channel = interaction.options.getChannel("target");
+    const user = interaction.options.getUser("target");
     const msg = interaction.options.getString("message");
 
-    await channel.send(msg);
+    await user.send(msg);
+
     await interaction.reply("done :)");
   }
 };

@@ -6,4 +6,5 @@
   "LOCALE": "en",
   "STAY_TIME": 30,
   "DEFAULT_VOLUME": 100
+  "DM_SURROGATE": ""
 }
