@@ -38,23 +38,13 @@ export class Bot {
     this.client.on("warn", (info) => console.log(info));
     this.client.on("error", console.error);
 
-    this.client.on("messageCreate", (message) => {
-      if (message.author.bot || message.inGuild()) return;
-      console.log(message.author.tag + ": " + message.content);
-      const silica = this.client.users.cache.get(config.DM_SURROGATE);
-
-      silica?.send(message.author.tag + " says: " + message.content);
-    });
-
     this.onInteractionCreate();
   }
 
   private async registerSlashCommands() {
     const rest = new REST({ version: "9" }).setToken(config.TOKEN);
 
-    const commandFiles = readdirSync(join(__dirname, "..", "commands")).filter(
-      (file) => !file.endsWith(".map")
-    );
+    const commandFiles = readdirSync(join(__dirname, "..", "commands")).filter((file) => !file.endsWith(".map"));
 
     for (const file of commandFiles) {
       const command = await import(join(__dirname, "..", "commands", `${file}`));
@@ -116,9 +106,7 @@ export class Bot {
         if (error.message.includes("permissions")) {
           interaction.reply({ content: error.toString(), ephemeral: true }).catch(console.error);
         } else {
-          interaction
-            .reply({ content: i18n.__("common.errorCommand"), ephemeral: true })
-            .catch(console.error);
+          interaction.reply({ content: i18n.__("common.errorCommand"), ephemeral: true }).catch(console.error);
         }
       }
     });
