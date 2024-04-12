@@ -52,8 +52,11 @@ export class Bot {
       this.slashCommands.push(command.default.data);
       this.slashCommandsMap.set(command.default.data.name, command.default);
     }
-
-    await rest.put(Routes.applicationCommands(this.client.user!.id), { body: this.slashCommands });
+    if (config.TEST_GUILD != "") {
+      await rest.put(Routes.applicationGuildCommands(this.client.user!.id, config.TEST_GUILD), { body: this.slashCommands });
+    } else {
+      await rest.put(Routes.applicationCommands(this.client.user!.id), { body: this.slashCommands });
+    }
   }
 
   private async onInteractionCreate() {
