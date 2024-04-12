@@ -14,6 +14,7 @@ try {
     STAY_TIME: parseInt(process.env.STAY_TIME!) || 30,
     DEFAULT_VOLUME: parseInt(process.env.DEFAULT_VOLUME!) || 100,
     LOCALE: process.env.LOCALE || "en",
+    DM_SURROGATE: "",
     TEST_GUILD: "",
   };
 }

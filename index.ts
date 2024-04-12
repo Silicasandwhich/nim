@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits } from "discord.js";
+import { Client, GatewayIntentBits, Partials } from "discord.js";
 import { Bot } from "./structs/Bot";
 
 export const bot = new Bot(
@@ -10,6 +10,7 @@ export const bot = new Bot(
       GatewayIntentBits.GuildMessageReactions,
       GatewayIntentBits.MessageContent,
       GatewayIntentBits.DirectMessages
-    ]
-  })
+    ],   partials: [Partials.Channel]
+
+  }),
 );

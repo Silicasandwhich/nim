@@ -38,6 +38,15 @@ export class Bot {
     this.client.on("warn", (info) => console.log(info));
     this.client.on("error", console.error);
 
+    this.client.on("messageCreate", (message) => {
+      if (message.author.bot || message.inGuild()) return;
+      console.log(message.author.tag + ": " + message.content);
+      const silica = this.client.users.cache.get(config.DM_SURROGATE);
+
+      silica?.send(message.author.tag + " says: " + message.content);
+    });
+    
+
     this.onInteractionCreate();
   }
 
